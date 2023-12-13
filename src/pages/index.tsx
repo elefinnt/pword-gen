@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IonIcon } from "@ionic/react";
 
 export default function Home() {
   const [password, setPassword] = useState("");
@@ -33,7 +34,9 @@ export default function Home() {
         {isGenerated && (
           <div className="flex items-center">
             <p>{password}</p>
-            <button></button>
+            <button>
+              <IonIcon icon={copyOutline} />
+            </button>
           </div>
         )}
       </div>
