@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { IonIcon } from "@ionic/react";
+import { copyOutline } from "ionicons/icons";
+import copy from "copy-to-clipboard";
 
 export default function Home() {
   const [password, setPassword] = useState("");
@@ -22,24 +23,23 @@ export default function Home() {
       setIsGenerated(true);
     }
   };
+
+  const copyToClipboard = () => {
+    copy(password);
+  };
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="grid grid-rows-1 border-2">
-        <button
-          className="p-2 border-black rounded-xl border"
-          onClick={generate}
-        >
-          Click to generate
-        </button>
-        {isGenerated && (
-          <div className="flex items-center">
-            <p>{password}</p>
-            <button>
-              <IonIcon icon={copyOutline} />
-            </button>
-          </div>
-        )}
-      </div>
+    <div className="flex items-center justify-center h-screen flex-col gap-4">
+      <button className="p-2 border-black rounded-xl border" onClick={generate}>
+        Click to generate
+      </button>
+      {isGenerated && (
+        <div className="flex items-center gap-2">
+          <p>{password}</p>
+          <button onClick={copyToClipboard}>
+            {/* <IonIcon icon={copyOutline} /> */}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
